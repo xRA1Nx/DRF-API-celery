@@ -27,5 +27,4 @@ def finished_work_task__db_cleaner():
     time_now = localtime()
     weak_before = time_now - datetime.timedelta(days=7)
     qs = work_task__after_current_datetime(date_time=weak_before)
-    print(qs, len(qs))
     qs.delete()

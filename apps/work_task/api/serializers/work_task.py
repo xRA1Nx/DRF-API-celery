@@ -27,4 +27,4 @@ class WorkTaskDetailSerializer(ModelSerializer):
 
 
 class WorkTaskResponseSerializer(Serializer):
-    message = CharField(help_text='сообщение об успешном запуске задачи')
+    message = CharField(help_text='сообщение об успешном запуске задачи.')
