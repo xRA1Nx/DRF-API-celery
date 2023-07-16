@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  db:
+    container_name: db_pg
+    image: postgres
+    hostname: postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: db
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/dummy_dump.sql
+      - ./data/db:/var/lib/postgresql/data
+    restart: unless-stopped
+    ports:
+      - "5432:5432"  # Проброс порта 5432 из контейнера
