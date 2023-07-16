@@ -1,4 +1,4 @@
-1) установка зависимостей pip install -r > req.txt
+1) установка зависимостей pip install -r req.txt
 2) docker compose up - поднимаем постгрю + redis , в контенер постгри зашит дамп, для решения конфликта с миграциями (из за переписанного юзера)
 3) celery -A TestTask worker -l info - поднимаем таски
 4) celery -A TestTask beat -l info - задачи по расписанию
