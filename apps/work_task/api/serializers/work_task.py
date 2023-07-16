@@ -26,5 +26,5 @@ class WorkTaskDetailSerializer(ModelSerializer):
         return work_task__period(work_task=obj)
 
 
-class WorkTaskStartResponseSerializer(Serializer):
+class WorkTaskResponseSerializer(Serializer):
     message = CharField(help_text='сообщение об успешном запуске задачи')

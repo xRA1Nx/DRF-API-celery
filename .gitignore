@@ -3,3 +3,6 @@
 /.env
 /.idea
 /.git
+/celerybeat-schedule.bak
+/celerybeat-schedule.dat
+/celerybeat-schedule.dir

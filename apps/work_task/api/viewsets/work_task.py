@@ -7,7 +7,7 @@ from restdoctor.rest_framework.mixins import RetrieveModelMixin, DestroyModelMix
 from restdoctor.rest_framework.viewsets import ListModelViewSet
 
 from apps.work_task.api.serializers.work_task import WorkTaskDefaultSerializer, WorkTaskDetailSerializer, \
-    WorkTaskStartResponseSerializer
+    WorkTaskResponseSerializer
 from apps.work_task.logic.facades.async_facade import async__work_task__start
 from apps.work_task.logic.facades.work_task import work_task__create, work_task__check_status_and_start, \
     work_task__check_status_and_finish
@@ -29,7 +29,10 @@ class WorkTaskViewSet(ListModelViewSet, RetrieveModelMixin, DestroyModelMixin, C
             'response': WorkTaskDetailSerializer
         },
         'start': {
-            'response': WorkTaskStartResponseSerializer
+            'response': WorkTaskResponseSerializer
+        },
+        'finish': {
+            'response': WorkTaskResponseSerializer
         }
 
     }
