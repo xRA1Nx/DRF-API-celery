@@ -6,7 +6,7 @@ from apps.users.models import User
 
 
 @pytest.mark.django_db()
-def test__user__create(mocked__user__create):
+def test__user__create(mocked__create_model_instance):
     dto_dict = {
         'first_name': 'first_name',
         'last_name': 'last_name',
@@ -18,7 +18,7 @@ def test__user__create(mocked__user__create):
 
     user__create(dto=dto)
 
-    mocked__user__create.assert_called_once_with(
+    mocked__create_model_instance.assert_called_once_with(
         model_class=User,
         validated_data=dto_dict
     )

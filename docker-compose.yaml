@@ -3,18 +3,20 @@ services:
   db:
     container_name: db_pg
     image: postgres
-    hostname: postgres
     environment:
-      POSTGRES_DB: cism
       POSTGRES_USER: postgres
+      POSTGRES_DB: cism
       POSTGRES_PASSWORD: 321678
-      POSTGRES_HOST: db
     volumes:
       - ./db.sql:/docker-entrypoint-initdb.d/db.sql
       - ./data/db:/var/lib/postgresql/data
     restart: unless-stopped
     ports:
-      - "5432:5432"
+      - "5434:5432"
+
+
+
+
 
 
   rabbitmq:

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import sys
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -121,19 +122,40 @@ WSGI_APPLICATION = 'TestTask.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+TEST_DATABASE_PREFIX = 'test_'
+
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_NAME'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'NAME': os.getenv('POSTGRES_NAME', 'cism'),
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', '321678'),
         'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
-        'PORT': 5432,
+        'PORT': os.getenv('DB_PORT', 5434),
         'TEST': {
-            'NAME': os.getenv('POSTGRES_NAME'),
+            'NAME': 'test_cism',
         },
     }
 }
+
+if 'test' in sys.argv:
+    TEST_DATABASE_PREFIX = 'test_'
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'cism',
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+        'PORT': os.getenv('DB_PORT', 5434),
+        'TEST': {
+            'NAME': TEST_DATABASE_PREFIX + 'cism',
+            }
+        },
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
