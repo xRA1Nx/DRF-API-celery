@@ -2,7 +2,7 @@ from unittest.mock import Mock
 
 import pytest
 
-pytest_plugins = ('factories',)
+pytest_plugins = ('factories', 'apps.users.tests.fixtures')
 
 
 @pytest.fixture()
@@ -11,3 +11,5 @@ def mock_for_module(mocker):
         return mocker.patch(f'{module_name}.{function_name}', *args, **kwargs)
 
     return with_args
+
+
