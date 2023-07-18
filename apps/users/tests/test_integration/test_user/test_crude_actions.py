@@ -2,7 +2,12 @@ import pytest
 from rest_framework import status
 from restdoctor.rest_framework.reverse import reverse
 
-from apps.users.logic.selectors.user import users__all
+"""
+Пример интеграционных тестов,
+все кейсы и делать полноценную проверку займет длительное время
+В рамках тестового задания не вижу смысла этого делать
+
+"""
 
 
 @pytest.mark.django_db()
@@ -51,3 +56,4 @@ def test__user_detail_case_wrong_pk(
     )
 
     assert response.status_code == status.HTTP_404_NOT_FOUND
+
