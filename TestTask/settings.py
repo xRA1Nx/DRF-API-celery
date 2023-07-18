@@ -122,7 +122,6 @@ WSGI_APPLICATION = 'TestTask.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-TEST_DATABASE_PREFIX = 'test_'
 
 
 
@@ -134,23 +133,19 @@ DATABASES = {
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', '321678'),
         'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
         'PORT': os.getenv('DB_PORT', 5434),
-        'TEST': {
-            'NAME': 'test_cism',
-        },
     }
 }
 
 if 'test' in sys.argv:
-    TEST_DATABASE_PREFIX = 'test_'
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cism',
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'NAME': os.getenv('POSTGRES_NAME', 'cism'),
+        'USER': os.getenv('POSTGRES_USER', 'postgres'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', '321678'),
         'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
         'PORT': os.getenv('DB_PORT', 5434),
         'TEST': {
-            'NAME': TEST_DATABASE_PREFIX + 'cism',
+            'NAME': 'test_' + os.getenv('POSTGRES_NAME', 'cism'),
             }
         },
 

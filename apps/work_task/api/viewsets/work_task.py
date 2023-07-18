@@ -12,11 +12,11 @@ from apps.work_task.logic.facades.async_facade import async__work_task__start
 from apps.work_task.logic.facades.work_task import work_task__create, work_task__check_status_and_start, \
     work_task__check_status_and_finish
 from apps.work_task.logic.interactors.work_task import work_task__start, work_task__finish
-from apps.work_task.logic.selectors.work_task import work_task__all
+from apps.work_task.logic.selectors.work_task import work_tasks__all
 
 
 class WorkTaskViewSet(ListModelViewSet, RetrieveModelMixin, DestroyModelMixin, CreateModelMixin):
-    queryset = work_task__all()
+    queryset = work_tasks__all()
     filter_backends = (DjangoFilterBackend,)
     schema_tags = ['WorkTask']
 

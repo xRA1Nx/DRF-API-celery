@@ -2,6 +2,8 @@ from unittest.mock import Mock
 
 import pytest
 
+pytest_plugins = ('factories',)
+
 
 @pytest.fixture()
 def mock_for_module(mocker):
